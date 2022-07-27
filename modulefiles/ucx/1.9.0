@@ -1,0 +1,19 @@
+#%Module1.0#####################################################################
+set name "UCX"
+set dir "ucx"
+set version "1.9.0"
+set os "ucdhpc-20.04"
+set note "Unified Communication X an open-source, production-grade communication framework for data-centric and high-performance applications.\n     http://www.opeucx.org."
+
+# requirements here
+#if ![ is-loaded openmpi/4.0.5 ] { module unload openmpi/4.0.5 }
+
+set swroot "/software"
+module-whatis "This module loads $name version $version for $os. $note"
+
+prepend-path LD_LIBRARY_PATH $swroot/$dir/$version/$os/lib
+
+if { [ module-info mode load ] } {
+    puts stderr "Module $dir-$version-$os loaded.\n     $note"
+}
+

@@ -1,0 +1,32 @@
+#%Module1.0
+# by Tyler
+# 2018-07-10
+# recompiled 2/5/2019 mnd ods to this file Terri
+# recompiled 2/16/2021 oschreib
+
+#prereq fftw
+#module load intel
+#module swap openmpi
+#module load fftw
+set name "vasp"
+set dir "vasp"
+set version "5.4.4.pl2-vtst"
+set os "ucdhpc-20.04"
+set note "Vienna Ab initio Simulation Package.\n     http://www.vasp.at"
+
+module-whatis "This module loads $name version $version for $os. $note"
+# requirements here
+if [ is-loaded vasp/5.4.4pl2-vtstnvc21.2OpenMPI3.1.5DP ] { module unload vasp/5.4.4pl2-vtstnvc21.2OpenMPI3.1.5DP }
+if [ is-loaded nvhpc/21.2 ] { module unload nvhpc/21.2 }
+if ![ is-loaded openmpi/4.0.5 ] { module load openmpi/4.0.5 }
+if ![ is-loaded scalapack/2.1.0gcc9.3.0OpenMPI4.0.5 ] { module load scalapack/2.1.0gcc9.3.0OpenMPI4.0.5 }
+#
+setenv VASP_VERSION $version
+setenv VASP_PATH /software/$name/$env(VASP_VERSION)/$os/gcc9.3.0OpenMPI4.0.5
+
+prepend-path PATH $env(VASP_PATH)/bin
+#prepend-path CPATH $env(SCALAPACK_HOME)/include
+
+if [module-info mode load] {
+    puts stderr "Module [module-info name] loaded"
+}

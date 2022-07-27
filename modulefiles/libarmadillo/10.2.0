@@ -1,0 +1,20 @@
+#%Module1.0
+
+set name "libarmadillo"
+set dir "libarmadillo"
+set version "10.2.0"
+set os "ucdhpc-20.04"
+set note "\n OpenFOAM is a numerical library for C++ application (http://arma.sourceforge.net/download.html)"
+
+set swroot "/software"
+module-whatis "This module loads $name version $version for $os. $note"
+
+setenv libarma10_VERSION 10.2.0
+setenv libarma10_HOME $swroot/$name/$env(libarma10_VERSION)
+
+prepend-path LD_LIBRARY_PATH $env(libarma10_HOME)/lib
+prepend-path CPATH $env(libarma10_HOME)/include
+
+if [module-info mode load] {
+    puts stderr "Module $dir-$version-$os loaded.\n     $note"
+}

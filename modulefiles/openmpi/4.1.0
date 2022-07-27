@@ -1,0 +1,35 @@
+#%Module1.0#####################################################################
+
+set name "OpenMPI"
+set dir "openmpi"
+set version "4.1.0"
+set os "ucdhpc-20.04"
+set note "OpenMPI is an implementation of the Message Passing Interface.\n     http://www.openmpi.org."
+
+# requirements here
+if [ is-loaded openmpi/4.0.5 ] { module unload openmpi/4.0.5 }
+module load ucx/1.9.0
+module load libevent/2.1.12
+module load pmix/3.2.3
+module load hwloc/2.4.1
+
+set swroot "/software"
+module-whatis "This module loads $name version $version for $os. $note"
+
+prepend-path PATH $swroot/$dir/$version/$os/bin
+setenv OPENMPI_VERSION $version
+setenv OPENMPI_HOME $swroot/$dir/$version/$os
+setenv OPENMPI_ROOT $swroot/$dir/$version/$os
+setenv MPI_ROOT $swroot/$dir/$version/$os
+prepend-path LD_LIBRARY_PATH $swroot/$dir/$version/$os/lib
+prepend-path CPATH $swroot/$dir/$version/$os/include
+prepend-path MANPATH $swroot/$dir/$version/$os/man
+
+# this seems to be breaking manpages. -MCL
+#prepend-path MANPATH   ":$swroot/$dir/$version/$os/share/man"
+#prepend-path PYTHONPATH $swroot/$dir/$version/$os/lib/python3.5/site-packages/
+
+if { [ module-info mode load ] } {
+    puts stderr "Module $dir-$version-$os loaded.\n     $note"
+}
+

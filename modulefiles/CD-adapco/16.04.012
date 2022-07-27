@@ -1,0 +1,15 @@
+#%Module1.0
+#
+
+setenv CDadapcoHOME /software/CD-adapco
+setenv CDadapcoVERSION 16.04.012
+setenv CDadapcoHOMEVERSION $env(CDadapcoHOME)/$env(CDadapcoVERSION)
+
+prepend-path PATH  $env(CDadapcoHOMEVERSION)/STAR-CCM+$env(CDadapcoVERSION)/star/bin
+prepend-path LD_LIBRARY_PATH $env(CDadapcoHOMEVERSION)/STAR-CCM+$env(CDadapcoVERSION)/star/lib
+prepend-path CPATH $env(CDadapcoHOMEVERSION)/STAR-CCM+$env(CDadapcoVERSION)/star/include
+prepend-path PATH  $env(CDadapcoHOMEVERSION)/STAR-View+$env(CDadapcoVERSION)/bin
+
+if [module-info mode load] {
+        puts stderr "Module [module-info name] loaded "
+}

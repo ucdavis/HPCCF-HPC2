@@ -1,0 +1,27 @@
+#%Module1.0#####################################################################
+
+set name "Slurm"
+set dir "slurm"
+set version "20.11.0"
+set os "ucdhpc-20.04"
+set note "Commands for scheduling SLURM jobs.\n      http://www.schedmd.com"
+
+# requirements here
+#if ![ is-loaded java ] { module load java }
+
+set swroot "/software"
+module-whatis "This module loads $name version $version for $os. $note"
+
+prepend-path PATH $swroot/$dir/$version/$os/bin
+prepend-path PATH $swroot/$dir/$version/$os/sbin
+
+
+# this seems to be breaking manpages. -MCL
+#prepend-path MANPATH   ":$swroot/$dir/$version/$os/share/man"
+#prepend-path PYTHONPATH $swroot/$dir/$version/$os/lib/python3.5/site-packages/
+prepend-path MANPATH $swroot/$dir/$version/$os/share/man
+
+if { [ module-info mode load ] } {
+    puts stderr "Module $dir-$version-$os loaded.\n      $note"
+}
+

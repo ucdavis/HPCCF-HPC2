@@ -1,0 +1,40 @@
+#%Module1.0#####################################################################
+
+set name "gromacs"
+set dir "gromacs"
+set version "2021.3"
+set os "ucdhpc-2103"
+set note "GROMACS is a molecular dynamics package mainly designed for\n simulations of proteins, lipids, and nucleic acids. It was originally\n developed in the Biophysical Chemistry department of University \nof Groningen, and is now maintained by contributors in universities\nand research centers worldwide.\n      http://www.sgromacs.org"
+
+# requirements here
+if ![ is-loaded openmpi ] { module load openmpi/4.0.5 }
+
+set swroot "/software"
+module-whatis "This module loads $name version $version for $os. $note"
+
+prepend-path PATH $swroot/$dir/$version/$os/bin
+prepend-path PATH $swroot/$dir/$version/$os/sbin
+
+setenv GROMACS_VERSION $version
+setenv GROMACS_HOME $swroot/$dir/$version/$os
+setenv GMXMAN $env(GROMACS_HOME)/share/man
+setenv GMXDATA $env(GROMACS_HOME)/share/gromacs
+setenv GMXBIN $env(GROMACS_HOME)/bin
+#setenv GMXLDLIB $env(GROMACS_HOME)/lib/x86_64-linux-gnu
+setenv GMXLDLIB $env(GROMACS_HOME)/lib
+setenv PKG_CONFIG_PATH $swroot/$dir/$version/$os/lib/pkgconfig
+setenv GROMACS_DIR $swroot/$dir/$version/$os
+
+
+prepend-path MANPATH $env(GROMACS_HOME)/share/man
+prepend-path PATH $env(GROMACS_HOME)/bin
+prepend-path LD_LIBRARY_PATH $env(GROMACS_HOME)/lib
+prepend-path LD_LIBRARY_PATH $env(GROMACS_HOME)/lib/x86_64-linux-gnu
+#
+prepend-path CPATH $env(GROMACS_HOME)/include
+
+
+if { [ module-info mode load ] } {
+    puts stderr "Module $dir-$version-$os loaded.\n      $note"
+}
+

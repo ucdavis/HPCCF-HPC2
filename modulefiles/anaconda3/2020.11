@@ -1,0 +1,21 @@
+#%Module1.0
+
+set name "Anaconda3"
+set dir "anaconda3"
+set version "2020.11"
+set os "ucdhpc-20.04"
+set note "Anaconda is an open source distribution of the Python programming language for large-scale data processing, predictive analytics, and scientific computing. It contains many of the well known python packages such as scipy, numpy, etc. Use the 'conda list' command to see a full listing of the packages. This anaconda package is a distribution of python 3.8.3."
+set url "https://www.anaconda.com/download/#linux"
+set tags "programming language"
+
+module-whatis "This module loads $name version $version for $os. $note"
+
+set swroot "/software"
+prepend-path PATH            $swroot/$dir/$version/$os/bin
+prepend-path MANPATH   ":$swroot/$dir/$version/$os"
+prepend-path PYTHONPATH   $swroot/$dir/$version/$os/lib/python3.8/site-packages
+#prepend-path LD_LIBRARY_PATH   $swroot/$dir/$version/$os/lib
+
+if { [ module-info mode load ] } {
+    puts stderr "Module $dir-$version-$os loaded. $note"
+}

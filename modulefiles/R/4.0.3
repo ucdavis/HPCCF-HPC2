@@ -1,0 +1,22 @@
+#%Module1.0#####################################################################
+
+set name "R"
+set dir "R"
+set version "4.0.3"
+set os "ucdhpc-20.04"
+set note "The R statistical programming language.\n      http://www.r-project.org"
+
+# requirements here
+#if ![ is-loaded java ] { module load java }
+
+set swroot "/software"
+module-whatis "This module loads $name version $version for $os. $note"
+
+prepend-path PATH $swroot/$dir/$version/$os/bin
+prepend-path MANPATH   ":$swroot/$dir/$version/$os/share"
+#prepend-path PYTHONPATH $swroot/$dir/$version/$os/lib/python3.5/site-packages/
+
+if { [ module-info mode load ] } {
+    puts stderr "Module $dir-$version-$os loaded.\n      $note"
+}
+

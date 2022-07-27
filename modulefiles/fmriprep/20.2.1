@@ -1,0 +1,21 @@
+#%Module1.0#####################################################################
+
+set name "fmriprep"
+set dir "fmriprep"
+set version "20.2.1"
+set os "ucdhpc-20.04"
+set note "fMRIPrep is an open source Preprocessing Pipeline for fMRI Data. See https://fmriprep.org"
+
+# requirements here
+if ![ is-loaded openmpi ] { module load singularity/3.7.1 }
+
+set swroot "/software"
+
+prepend-path PATH		$swroot/$dir/$version/$os/bin
+#prepend-path MANPATH		$swroot/$dir/$version/$os/share/man
+
+module-whatis "This module loads $name version $version for $os. $note"
+
+if { [ module-info mode load ] } {
+    puts stderr "Module $dir-$version-$os loaded.\n     $note"
+}

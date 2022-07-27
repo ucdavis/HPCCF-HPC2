@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+
+set name "ase"
+set dir "ase"
+set version "3.20.1"
+set os "ucdhpc-20.04"
+set note "The Atomic Simulation Environment (ASE) is a set of tools and Python modules for setting up, manipulating, running, visualizing and analyzing atomistic simulations."
+set url "https://wiki.fysik.dtu.dk/ase/"
+
+module-whatis "This module loads $name version $version for $os. $note"
+
+# code for getting module usage counts
+
+set swroot "/software"
+prepend-path PATH $swroot/$dir/$version/$os/bin
+prepend-path PYTHONPATH $swroot/$dir/$version/$os/lib/python3.8/site-packages
+
+if { [ module-info mode load ] } {
+    puts stderr "Module $dir-$version-$os loaded. $note"
+}

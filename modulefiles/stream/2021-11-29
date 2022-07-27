@@ -1,0 +1,17 @@
+#%Module1.0#####################################################################
+
+set name "stream"
+set dir "stream"
+set version "2021-11-29"
+set os "ucdhpc-20.04"
+set note "STREAM is the de facto industry standard benchmark for measuring sustained memory bandwidth. See https://www.cs.virginia.edu/stream/"
+
+set swroot "/software"
+
+prepend-path PATH		$swroot/$dir/$version/$os/bin
+
+module-whatis "This module loads $name version $version for $os. $note"
+
+if { [ module-info mode load ] } {
+    puts stderr "Module $dir-$version-$os loaded.\n     $note"
+}

@@ -1,0 +1,24 @@
+#%Module1.0
+## stringtie
+## by PO
+## Date 7/1/2022
+
+set name "Stringtie"
+set dir "stringtie"
+set os "ucdhpc-20-04"
+set note "StringTie is a fast and highly efficient assembler of RNA-Seq alignments into potential transcripts.\n     https://ccb.jhu.edu/software/stringtie/index.shtml"
+set version "2.2.0"
+
+module-whatis "This module loads $name version $version for $os. $note"
+
+setenv STRINGTIE_HOME /software/$dir/$version/$os
+
+#prepend-path MANPATH $env(STRINGTIE_HOME)/share/man
+prepend-path PATH $env(STRINGTIE_HOME)/bin
+#prepend-path LD_LIBRARY_PATH $env(STRINGTIE_HOME)/lib
+#prepend-path LD_LIBRARY_PATH $env(STRINGTIE_HOME)/lib/x86_64-linux-gnu
+#prepend-path CPATH $env(STRINGTIE_HOME)/include
+
+if [module-info mode load] {
+        puts stderr "Module [module-info name] loaded "
+}

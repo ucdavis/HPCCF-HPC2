@@ -1,0 +1,27 @@
+#%Module1.0
+## 2022-07-12: OW
+## INC1451350
+
+set conda_version "4.13.0"
+
+module load conda3/$conda_version
+
+set name "fensorflow"
+set version "2.9.1"
+
+set url "https://www.tensorflow.org/"
+set tags "conda tensorflow gpu machine learning"
+
+set note "The core open source library to help you develop and train ML models."
+
+module-whatis "This module loads $name version $version. $note"
+
+prepend-path LD_LIBRARY_PATH /share/software/conda3/$conda_version/envs/$name-$version/lib
+
+if { [ module-info mode load ] } {
+   	puts stderr "[module-info name] is installed in a conda environment with the conda3 module.\n"
+	puts stderr "To enter the environment, run:"
+	puts stderr "	source activate $name-$version\n"
+	puts stderr "when done, run:"
+	puts stderr "	source deactivate "	
+}

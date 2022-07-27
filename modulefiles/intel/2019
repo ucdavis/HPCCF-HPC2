@@ -1,0 +1,26 @@
+#%Module1.0
+module unload openmpi
+
+setenv CC icc
+setenv CXX icpc
+setenv F77 ifort
+setenv FC ifort
+
+prepend-path MODULEPATH /software/intel/modulefiles/intel/2019
+
+if [module-info mode load] {
+        puts stderr "Module [module-info name] loaded"
+}
+
+#%Module 1.0
+prepend-path     CLASSPATH               /software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/daal/lib/daal.jar
+prepend-path     CPATH                   /software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/ipp/include:/software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/mkl/include:/software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/pstl/include:/software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/tbb/include:/software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/daal/include
+#prepend-path    INTEL_LICENSE_FILE      /software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/licenses:/opt/intel/licenses:/root/intel/licenses
+#prepend-path INTEL_LICENSE_FILE /software/intel/intel-2019/USE_SERVER.lic:/opt/intel/licenses/USE_SERVER.lic:/root/intel/licenses/license.lic
+prepend-path INTEL_LICENSE_FILE /software/intel/intel-2019/USE_SERVER.lic:/software/intel/intel-2019/license.lic:/root/intel/licenses/license.lic
+prepend-path     LD_LIBRARY_PATH         /software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/compiler/lib/intel64_lin:/software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/ipp/lib/intel64:/software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/mkl/lib/intel64_lin:/software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/tbb/lib/intel64/gcc4.7:/software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/daal/lib/intel64_lin
+prepend-path     LIBRARY_PATH            /software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/ipp/lib/intel64:/software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/compiler/lib/intel64_lin:/software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/mkl/lib/intel64_lin:/software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/tbb/lib/intel64/gcc4.7:/software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/daal/lib/intel64_lin
+prepend-path     NLSPATH                 /software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/compiler/lib/intel64/locale/%l_%t/%N:/software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/mkl/lib/intel64_lin/locale/%l_%t/%N
+prepend-path     PATH                    /software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/bin/intel64
+prepend-path     PKG_CONFIG_PATH         /software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/mkl/bin/pkgconfig
+setenv MKLROOT /software/intel/intel-2019/compilers_and_libraries_2019.2.187/linux/mkl/

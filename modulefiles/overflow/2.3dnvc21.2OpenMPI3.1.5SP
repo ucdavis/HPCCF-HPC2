@@ -1,0 +1,25 @@
+#%Module1.0
+# compiled 3/24/2021 oschreib
+
+set name "overflow"
+set dir "overflow"
+set version "2.3d"
+set os "ucdhpc-20.04"
+set note "OVERFLOW 2.3is a NASA research code, and is available only
+within the United States, to U.S. companies, universities, and individuals
+under an appropriate Software Usage Agreement.
+https://software.nasa.gov/software/LAR-19668-1"
+
+module-whatis "This module loads $name version $version for $os. $note"
+# requirements here
+if [ is-loaded openmpi/4.0.5 ] { module unload openmpi/4.0.5 }
+if [ is-loaded openmpi/4.1.0 ] { module unload openmpi/4.1.0 }
+if ![ is-loaded nvhpc/21.2 ] { module load nvhpc/21.2 }
+#
+setenv OVERFLOW_VERSION $version
+setenv OVERFLOW_PATH /software/$name/$version/$os/nvc21.2OpenMPI3.1.5/bin
+prepend-path PATH $env(OVERFLOW_PATH)
+
+if [module-info mode load] {
+    puts stderr "Module [module-info name] loaded"
+}

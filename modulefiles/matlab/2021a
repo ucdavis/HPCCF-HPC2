@@ -1,0 +1,23 @@
+#%Module1.0
+## matlab
+## by Richard
+
+set name "Matlab"
+set dir "Matlab"
+set os "ucdhpc-20.04"
+set note "Matlab Simulation Package.\n     http://www.mathworks.com"
+set version "2021a"
+
+module-whatis "This module loads $name version $version for $os. $note"
+
+setenv MATLAB_HOME /software/$dir/$version/$os
+
+#prepend-path MANPATH $env(MATLAB_HOME)/share/man
+prepend-path PATH $env(MATLAB_HOME)/bin
+#prepend-path LD_LIBRARY_PATH $env(MATLAB_HOME)/lib
+#prepend-path LD_LIBRARY_PATH $env(MATLAB_HOME)/lib/x86_64-linux-gnu
+#prepend-path CPATH $env(MATLAB_HOME)/include
+
+if [module-info mode load] {
+	puts stderr "Module [module-info name] loaded "
+}

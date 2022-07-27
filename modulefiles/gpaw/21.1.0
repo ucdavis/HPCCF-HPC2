@@ -1,0 +1,17 @@
+#%Module1.0
+
+
+
+module load anaconda3/2020.11
+proc ModulesHelp {} {
+    puts stderr "   GPAW: DFT and beyond within the projector-augmented wave method"
+    puts stderr "   https://pypi.org/project/gpaw"
+}
+module-whatis "GPAW: DFT and beyond within the projector-augmented wave method"
+if [module-info mode load] {
+    puts stderr "gpaw is now installed in a conda environment with the anaconda3/2020.11 module.\n"
+    puts stderr "To enter the environment, run:"
+    puts stderr "    source activate gpaw\n"
+    puts stderr "when done, run:"
+    puts stderr "    source deactivate "
+}

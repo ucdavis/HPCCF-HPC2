@@ -1,0 +1,24 @@
+#%Module1.0#####################################################################
+
+set name "LAMMPS"
+set dir "lammps"
+set version "30Nov2020"
+set os "ucdhpc-20.04"
+set note "LAMMPS is a classical molecular dynamics code with a focus on materials modeling. See https://lammps.sandia.gov/"
+
+# requirements here
+if ![ is-loaded openmpi ] { module load openmpi }
+
+set swroot "/software"
+
+prepend-path LAMMPS_POTENTIALS	$swroot/$dir/$version/$os/share/lammps/potentials
+prepend-path MSI2LMP_LIBRARY	$swroot/$dir/$version/$os/share/lammps/frc_files
+prepend-path PATH		$swroot/$dir/$version/$os/bin
+prepend-path MANPATH		$swroot/$dir/$version/$os/share/man
+
+module-whatis "This module loads $name version $version for $os. $note"
+
+if { [ module-info mode load ] } {
+    puts stderr "Module $dir-$version-$os loaded.\n     $note"
+}
+

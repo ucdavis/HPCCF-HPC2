@@ -1,0 +1,24 @@
+#%Module1.0
+
+set name "ScaLAPACK"
+set dir "scalapack"
+set version "2.1.0"
+set os "ucdhpc-20.04"
+set note "Scalable Linear Algebra PACKage.\n     http://www.netlib.org/scalapack"
+
+# requirements here
+if ![ is-loaded nvhpc/21.2 ] { module load nvhpc/21.2 }
+#
+
+module-whatis "This module loads $name version $version for $os. $note"
+
+setenv SCALAPACK_VERSION $version
+setenv SCALAPACK_HOME /software/scalapack/$env(SCALAPACK_VERSION)/$os/nvc21.2-0OpenMPI3.1.5
+setenv SCALAPACK_DIR /software/scalapack/$env(SCALAPACK_VERSION)/$os/nvc21.2-0OpenMPI3.1.5
+
+prepend-path LD_LIBRARY_PATH $env(SCALAPACK_HOME)
+#prepend-path CPATH $env(SCALAPACK_HOME)/include
+
+if [module-info mode load] {
+        puts stderr "Module [module-info name] loaded "
+}

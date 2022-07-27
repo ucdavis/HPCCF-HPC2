@@ -1,0 +1,19 @@
+#%Module1.0#####################################################################
+set name "TurboVNC Wrapper"
+set dir "turbovnc"
+set version "3.0.1"
+set os "ucdhpc-20.04"
+set note "A wrapper to enable SSH tunneling to a VNC desktop."
+
+# requirements here
+#if ![ is-loaded openmpi/4.0.5 ] { module unload openmpi/4.0.5 }
+
+set swroot "/software"
+module-whatis "This module loads $name version $version for $os. $note"
+
+prepend-path PATH		$swroot/$dir/wrapper/bin
+
+if { [ module-info mode load ] } {
+    puts stderr "Module $dir-$version-$os loaded.\n     $note"
+    puts stderr "Next run: turbovnc-wrapper.sh"
+}

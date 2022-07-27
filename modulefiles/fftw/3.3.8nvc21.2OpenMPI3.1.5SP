@@ -1,0 +1,33 @@
+#%Module1.0#####################################################################
+
+set name "FFTW"
+set dir "fftw"
+set version "3.3.8"
+set os "ucdhpc-20.04"
+set note "FFTW is a free collection of fast C routines for computing the
+Discrete Fourier Transform in one or more dimensions.  It includes
+complex, real, symmetric, and parallel transforms, and can handle
+arbitrary array sizes efficiently.  FFTW is typically faster than
+other publically-available FFT implementations, and is even
+competitive with vendor-tuned libraries. \n     http://www.fftw.org"
+
+# requirements here
+if [ is-loaded openmpi/4.0.5 ] { module unload openmpi/4.0.5 }
+if [ is-loaded openmpi/4.1.0 ] { module unload openmpi/4.1.0 }
+if ![ is-loaded nvhpc/21.2 ] { module load nvhpc/21.2 }
+
+set swroot "/software"
+module-whatis "This module loads $name version $version for $os. $note"
+
+set FFTW $swroot/$dir/$version/$os/nvc21.2OpenMPI3.1.5SP
+prepend-path LD_LIBRARY_PATH $FFTW/lib
+prepend-path CPATH $FFTW/include
+prepend-path MANPATH $FFTW/share/man
+
+# this seems to be breaking manpages. -MCL
+#prepend-path MANPATH   ":$swroot/$dir/$version/$os/share/man"
+#prepend-path PYTHONPATH $swroot/$dir/$version/$os/lib/python3.5/site-packages/
+
+if { [ module-info mode load ] } {
+    puts stderr "Module $dir-$version-$os loaded.\n     $note"
+}

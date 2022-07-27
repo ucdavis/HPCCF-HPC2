@@ -1,0 +1,20 @@
+#%Module1.0
+## cp2k
+## by oschreib
+
+set name "cp2k"
+set dir "cp2k"
+set os "ucdhpc-20.04"
+set note "CP2K, Open Source Molecular Dynamics\n     http://www.cp2k.org"
+set version "8.2"
+
+module-whatis "This module loads $name version $version for $os. $note"
+
+setenv CP2K_HOME /software/$dir/$name-$version/$os
+
+prepend-path PATH $env(CP2K_HOME)/exe/local
+prepend-path LD_LIBRARY_PATH  $env(CP2K_HOME)/lib
+
+if [module-info mode load] {
+	puts stderr "Module [module-info name] loaded "
+}

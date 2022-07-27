@@ -1,0 +1,26 @@
+#%Module1.0#####################################################################
+##
+## modules modulefile
+##
+proc ModulesHelp { } {
+        global version prefix
+
+        puts stderr "\tmodules - loads the modules software & application environment"
+        puts stderr "\n\tThis adds $prefix/* to several of the"
+        puts stderr "\tenvironment variables."
+        puts stderr "\n\tVersion $version\n"
+}
+
+module-whatis	"loads the modules environment"
+
+# for Tcl script use only
+set	version		4.6.1
+set	prefix		/software/modules/4.6.1/ucdhpc-20.04/
+
+
+setenv          MODULESHOME	$prefix
+prepend-path    PATH   		/software/modules/4.6.1/ucdhpc-20.04//bin
+prepend-path    MANPATH		/software/modules/4.6.1/ucdhpc-20.04//share/man
+
+# enable module versioning modulepath
+#module use /software/modules/4.6.1/ucdhpc-20.04//versions

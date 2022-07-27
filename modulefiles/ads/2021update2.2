@@ -1,0 +1,25 @@
+#%Module1.0
+## ADS
+## by oschreib
+
+set name "ADS"
+set dir "ads"
+set os "ucdhpc-20.04"
+set note "PathWave Advanced Design System (ADS) Software\n     http://www.keysight.com"
+set version "2021_Update2.2"
+
+module-whatis "This module loads $name version $version for $os. $note"
+
+setenv HPEESOF_DIR /software/$dir/$name$version/$os
+prepend-path PATH $env(HPEESOF_DIR)/bin
+
+setenv ADS_LICENSE_FILE 1700@string.ahmct.ucdavis.edu
+#setenv ADS_LICPREF_HPC2 
+#setenv AGILEESOFD_SERVER_CONFIG 
+#setenv AGILEESOFD_SERVER_LOGFILE 
+setenv ADS_PRODSEL_AUTOSTART false
+setenv ADS_PRODSEL_PREVIOUS b_ads_inclusive
+setenv ADS_EXP_WARNING_DATE "Mon Aug 2 2021"
+if [module-info mode load] {
+	puts stderr "Module [module-info name] loaded "
+}

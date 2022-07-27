@@ -1,0 +1,21 @@
+#%Module1.0#####################################################################
+
+set name "singularity"
+set dir "singularity"
+set version "3.8.0"
+set os "ucdhpc-20.04"
+set note "Singularity is an open source container solution. See https://singularity.lbl.gov"
+
+# requirements here
+#if ![ is-loaded openmpi ] { module load openmpi }
+
+set swroot "/software"
+
+prepend-path PATH		$swroot/$dir/$version/$os/bin
+#prepend-path MANPATH		$swroot/$dir/$version/$os/share/man
+
+module-whatis "This module loads $name version $version for $os. $note"
+
+if { [ module-info mode load ] } {
+    puts stderr "Module $dir-$version-$os loaded.\n     $note"
+}

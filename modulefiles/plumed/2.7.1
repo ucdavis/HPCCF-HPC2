@@ -1,0 +1,21 @@
+#%Module1.0
+## plumed
+## by oschreib
+
+set name "plumed"
+set dir "plumed"
+set os "ucdhpc-20.04"
+set note "PLUMED, The community-developed PLUgin for MolEcular Dynamics\n     http://www.plumed.org"
+set version "2.7.1"
+
+module-whatis "This module loads $name version $version for $os. $note"
+
+setenv PLUMED_HOME /software/$dir/$name-$version/$os
+
+prepend-path PATH $env(PLUMED_HOME)/bin
+prepend-path LD_LIBRARY_PATH  $env(PLUMED_HOME)/lib
+prepend-path CPATH $env(PLUMED_HOME)/include
+
+if [module-info mode load] {
+	puts stderr "Module [module-info name] loaded "
+}

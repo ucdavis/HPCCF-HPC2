@@ -1,0 +1,19 @@
+#%Module1.0#####################################################################
+set name "PMIx"
+set dir "pmix"
+set version "3.2.3"
+set os "ucdhpc-20.04"
+set note "Process Management Interface Exascale (PMIx) standard.\n https://openpmix.github.io   https://github.com/openpmix/openpmix/releases"
+
+# requirements here
+#if ![ is-loaded openmpi/4.0.5 ] { module unload openmpi/4.0.5 }
+
+set swroot "/software"
+module-whatis "This module loads $name version $version for $os. $note"
+
+prepend-path LD_LIBRARY_PATH $swroot/$dir/$version/$os/lib
+
+if { [ module-info mode load ] } {
+    puts stderr "Module $dir-$version-$os loaded.\n     $note"
+}
+
