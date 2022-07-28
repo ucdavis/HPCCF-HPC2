@@ -11,6 +11,8 @@ arbitrary array sizes efficiently.  FFTW is typically faster than
 other publically-available FFT implementations, and is even
 competitive with vendor-tuned libraries. \n     http://www.fftw.org"
 
+conflict fftw/3.3.8nvc21.2OpenMPI3.1.5DP
+
 # requirements here
 if [ is-loaded openmpi/4.0.5 ] { module unload openmpi/4.0.5 }
 if [ is-loaded openmpi/4.1.0 ] { module unload openmpi/4.1.0 }
@@ -19,15 +21,19 @@ if ![ is-loaded nvhpc/21.2 ] { module load nvhpc/21.2 }
 set swroot "/software"
 module-whatis "This module loads $name version $version for $os. $note"
 
-set FFTW $swroot/$dir/$version/$os/nvc21.2OpenMPI3.1.5SP
-prepend-path LD_LIBRARY_PATH $FFTW/lib
-prepend-path CPATH $FFTW/include
-prepend-path MANPATH $FFTW/share/man
+setenv FFTW_DIR $swroot/$dir/$version/$os/nvc21.2OpenMPI3.1.5SP
+prepend-path LD_LIBRARY_PATH $env(FFTW_DIR)/lib
+prepend-path CPATH $env(FFTW_DIR)/include
+prepend-path MANPATH $env(FFTW_DIR)/share/man
 
 # this seems to be breaking manpages. -MCL
 #prepend-path MANPATH   ":$swroot/$dir/$version/$os/share/man"
 #prepend-path PYTHONPATH $swroot/$dir/$version/$os/lib/python3.5/site-packages/
 
 if { [ module-info mode load ] } {
-    puts stderr "Module $dir-$version-$os loaded.\n     $note"
+    puts stderr "Module $dir-$version-$os loaded."
+    puts stderr "NOTE: This is the SINGLE PRECISION version. Link against it with -lfftw3f."
+    puts stderr "Environment variables:\
+                 \n\tFFTW_DIR: the top-level library directory.\
+                 \nAbout:\n\t$note"
 }
