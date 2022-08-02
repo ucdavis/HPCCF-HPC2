@@ -1,0 +1,233 @@
+!Master name list created to be used as template / reference 
+!for creating namelist files.  File contains all namelist variables suppoerted by
+!WOPWOP as of 1/12/06.  Variables are set to WOPWOP defaults, unless they conflict with
+!other variables as explained by comments.
+
+
+
+&EnvironmentIn
+! nbAircraft              = 0  !Aircraft can be treated as containers    
+ nbSourceContainers       = 1 
+! nbWall                  = 0          
+! wallIteration           = 0  
+ nbObserverContainers     = 1
+ dTau                     = 0.0 
+ tauMin                   = 0.0        
+ tauMax                   = 0.0
+ nTau                     = 0  
+
+!OUTPUT FLAGS
+!################################
+!Calculation Flags
+
+ thicknessNoiseFlag      = .false. 
+ loadingNoiseFlag        = .false.    
+ totalNoiseFlag          = .false.
+ pressureGradientFlag    = .false.
+ pressureGradient1AFlag  = .false.
+ 
+ isomsThicknessNoiseFlag = .false.    
+ acousticPressureFlag    = .false.
+ 
+ OASPLdBFlag             = .false. 
+ OASPLdBAFlag            = .false. 
+ spectrumFlag            = .false.
+ SPLdBFlag               = .false.    
+ SPLdBAFlag              = .false.    
+ audioFlag               = .false. 
+ phaseFlag               = .false.
+ complexPressureFlag     = .false.. 
+ sigmaFlag               = .false.
+
+!#################################
+!Save location variables 
+
+ pressureFolderName      = "" 
+ pressureFolderName      = "" 
+ pressureFileName        = "pressure" 
+ SPLFolderName           = "" 
+ SPLFileName             = "spl"      
+ OASPLFileName           = "OASPL"
+ complexPressureFileName = "complex"
+ phaseFileName           = "phase"
+ sigmaFolderName         = "" 
+ sigmaFileName           = "sigma"    
+ audioFolderName         = "" 
+ audioFileName           = "audio"
+
+!#################################
+! Sigma Output 
+
+ sigmaFlag               = .false. 
+ iBlankFlag              = .true.     
+ loadingNoiseSigmaFlag   = .false. 
+ thicknessNoiseSigmaFlag = .false.    
+ totalNoiseSigmaFlag     = .false. 
+ normalSigmaFlag         = .false.   
+ machSigmaFlag           = .false. 
+ observerSigmaFlag       = .false.    
+ velocitySigmaFlag       = .false. 
+ accelerationSigmaFlag   = .false.    
+ densitySigmaFlag        = .false. 
+ momentumSigmaFlag       = .false.    
+ pressureSigmaFlag       = .false. 
+ loadingSigmaFlag        = .false.    
+ areaSigmaFlag           = .false.
+ MdotrSigmaFlag          = .false.
+ sigmaStructuredFormat   = 'PLOT3D'   
+ sigmaUnstructuredFormat = 'FIELDVIEW'
+
+!###############################
+
+ debugLevel              = 1  
+ ASCIIOutputFlag         = .false
+
+/
+
+&EnvironmentConstants
+  rho             = 1.225
+  c               = 342
+  gamma           = 1.4
+  integrationType = 0
+  pi              = 3.14159265359
+  mu              = 0.0000151
+  deltaT          = 0.5
+  nu              = mu/rho
+  epsilon         = 1e-5
+
+/
+
+&ObserverIn
+  Title              = 'Observer' 
+  nt                 = 128
+  tMin               = 0. 
+  tMax               = 0. 
+
+! For Obs Grids 
+!  nbx                = 0 
+!  nby                = 0
+!  nbz                = 0 
+!  xMin               = 0.0
+!  yMin               = 0.0 
+!  zMin               = 0.0
+!  xMax               = 0.0 
+!  yMax               = 0.0
+!  zMax               = 0.0 
+
+!single obs locatoin  
+  xLoc               = 0.0 
+  yLoc               = 0.0
+  zLoc               = 0.0 
+
+!Spherical Obs 
+!  radius             = 0
+!  nbTheta            = 0
+!  nbPsi              = 0 
+!  thetaMin           = 0.0 
+!  thetaMax           = 0.0 
+!  psiMin             = 0.0 
+!  psiMax             = 0.0
+
+!load obs from file  
+  fileName           = ""
+
+!  attachedTo         = "" 
+!  nbBaseObsFrame     = 0 
+!  nbBaseLocalFrame   = 0 
+
+!Frequency Analysis setup
+!  windowFunction     = "" 
+!  nbHarmonics        = 0 
+!  segmentIncrement   = 1
+!  nbFreqRanges       = 0
+!  segmentSize        = 0.0 
+!  segmentStepSize     = 0.0
+!  highPassFrequency  = 0.0 
+!  lowPassFrequency   = HUGE(lowPassFrequency) 
+!  octaveFlag         = .false.
+!  octaveNumber       = 3.0
+!  octaveApproxFlag   = .false.
+!  sigmaRadius        = 0.1 
+/
+
+&ContainerIn
+  patchGeometryFile = ''
+  patchLoadingFile  = ''
+  nbPatch           = 0
+  C%nbPatch         = 0
+  nbBase            = 0
+  C%nbBase          = 0
+  nbContainer       = 0
+  C%nbContainer     = 0
+  title             = "Generic Container"
+  isPermeable       = .false. ! Now ignored--left for backwards compatibility
+/
+
+!&AircraftIn   !use only if you used nbAircraft instead of nbContainer
+!   nbBase      = 0
+!    nbContainer = 0
+!    nbRotor     = 0
+!    nTau        = 0
+!    tauMin      = 0.0
+!    tauMax      = 0.0
+!    dTau        = 0.0
+!    title       = "Aircraft"
+!/
+
+!&RotorIn  !again use with AircraftIn only, can be treated as a container
+! title          = 'Rotor'
+! iRotor         = 1
+! nbBlades       = 4
+! nbBase         = 0
+! periodicBlades = .false.
+!/ 
+
+!&BladeIn   !again use with AircraftIn only, can be treated as a container
+!   Title       = "Blade"
+!   iBlade      = 1
+!   nbContainer = 0
+!   nbBase      = 0
+!   isPermeable = .false. 
+!   patchLoadingFile=''
+!   patchGeometryFile=''
+!/
+
+
+&CB
+!###############################
+  Title            = 'generic CB' 
+  iB               = 1
+
+  windframe        = .false.
+  rotation         = .false. 
+  TranslationType  = 'Timeindependent' !KnownFunction 
+  translationvalue = 0.0,0.0,0.0
+
+!KnownFunction Variables
+!  AH               =      
+!  VH               = 
+!  Y0               = 
+
+!  AxisType         = 'TimeIndependent'  !NonPeriodic
+!  axisvalue        = 0.0,0.0,1.0
+!  anglevalue       = 3.14159
+
+!NonPerioduc Variables
+!  filename         =
+
+!  AngleType        = 'TimeIndependent'  !KnownFunction !Periodic
+
+!KnownFunction Variables
+!  OMEGA            = 
+!  PSI0             =
+
+!Periodic Variables
+!  A0               = 
+!  A1               = 
+!  A2               =
+!  B1               =
+!  B2               =
+  
+  anglevalue       =
+/
+
