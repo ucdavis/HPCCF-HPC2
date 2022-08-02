@@ -669,7 +669,7 @@ contains
   subroutine DeterminePatchDtau(newpatch,tauMin,tauMax,ntau,dtau)
     type(patch),intent(inout)::newpatch
     integer::i,ntau
-    real:: epsilon
+    !real:: epsilon
     real::tempDTau,taumin,taumax,dtau,MinimumTau
 
     ! We need to throw this check in here because we bring in dtau from C%dtau
@@ -698,7 +698,7 @@ contains
         tempDtau = GetLoadingDt(newPatch%loadObject)
       end if
       if (tempDtau /= 0.0 .and. newPatch%dTau /= 0.0 .and. &
-          abs(tempDtau-newPatch%dTau) > tempDTau*epsilon(tempDtau) ) then  !epsilon doesn't work Intel Fortran 9.1 (Windows)
+          abs(tempDtau-newPatch%dTau) > tempDTau*epsilon ) then  !epsilon doesn't work Intel Fortran 9.1 (Windows)
         call Error ("The timestep in the surface file does not match that in the",&
                     "loading file")
       else if (tempDtau == 0.0 .and. dtau /= 0.0) then ! take on the parent containers dtau
