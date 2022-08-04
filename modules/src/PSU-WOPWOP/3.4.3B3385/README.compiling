@@ -1,0 +1,76 @@
+To compile PSU-WOPWOP 3.3.0 on Linux:
+-------------------------------------
+
+There are four environment variables to set:
+
+  F90    -- The Fortran compiler to use (ifort, f90, mpgf90, gfortran, 
+            g95, etc.)
+
+  CC     -- The C compiler to use (gcc is the safest choice: use the highest
+            version available on your system. pgcc is also tested and works when
+            using the pfg90 Fortran compiler)
+
+  FFLAGS -- Optional, the flags to pass to the Fortran compiler (defaults to a 
+            compiler-specific basic set if not specified)
+
+  CFLAGS -- Optional, defaults to "-O2 -g"
+
+You can set these however you like: predefined in your .bashrc or .cshrc file,
+explicitly set on the command line using "export" or "setenv", or as you call
+the configuration script, as shown in the examples below:
+
+Intel Fortran Compiler:
+bash$>  F90=ifort CC=gcc FFLAGS="-O3 -traceback" ./configure
+bash$>  make
+
+Absoft Fortran Compiler:
+bash$>  F90=f95 CC=gcc ./configure
+bash$>  make
+
+mpif90 Fortran Compiler wrapper with ifort:
+bash$>  F90="mpif90 -f90=ifort -config=ifort" CC=gcc ./configure
+bash$>  make
+
+If you have already set the environment variables, you would only need to call
+the configure script itself:
+bash$>  ./configure
+bash$>  make
+
+This should work in most circumstances. The most common failures occur when
+linking the executable: check the file ".make.config" to ensure that the LIBS
+variable is set correctly: it should include numerous "-L/path/to/lib" 
+directives. If these are missing or incorrect, locate your "libstdc++.a" file
+and add a "-L" directive for it. For example:
+
+bash$> find /usr/ -name "libstdc++.a"
+
+outputs the following on one of PSU's computers:
+
+/usr/lib64/gcc/x86_64-pc-linux-gnu/4.1.1/32/libstdc++.a
+/usr/lib64/gcc/x86_64-pc-linux-gnu/4.1.1/libstdc++.a
+/usr/lib64/gcc/x86_64-pc-linux-gnu/3.4.6/32/libstdc++.a
+/usr/lib64/gcc/x86_64-pc-linux-gnu/3.4.6/libstdc++.a
+
+Choosing the highest available 64-bit version, I would add the following
+to the LIBS variable in .make.config:
+
+LIBS="-L /usr/lib64/gcc/x86_64-pc-linux-gnu/4.1.1/32/ -lm -lstdc++"
+
+Note also that when compiling the FFTW library the some versions of some 
+compilers have difficulties with parts of the testing code: this does not
+affect PSU-WOPWOP, so if the "Linking wopwop3" line is the last thing printed,
+compilation succeeded and you're done. For example, you may see errors like:
+"mp.c:403: warning: conflicting types for built-in function 'cexp'" -- this
+is normal, depending on your compiler.
+
+If you need more help with Linux compilation, contact Chris Hennes 
+(chennes@psu.edu).
+
+
+Compiling PSU-WOPWOP 3.3.0 on Windows:
+--------------------------------------
+Only Visual Studio 2005 (version 8) with the Intel Fortran Compiler is
+supported at this time. To compile, open the "PSUWOPWOP.vfproj" file
+and click the "Build" button. This will place the executable in the "Release"
+folder. To run it, place it in the folder with your cases.nam file and 
+double-click on the PSUWOPWOP.exe program.

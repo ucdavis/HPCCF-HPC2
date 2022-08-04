@@ -1,0 +1,24 @@
+! PSU-WOPWOP
+! $Id: copyright.dat 3298 2013-10-18 02:12:03Z brentner $
+!
+! This code has been developed through support from The Pennsylvania State 
+! University and the following U.S. Government Contracts:
+! 
+! 9/1/00 - 8/31/01  NASA Cooperative Agreement NCC-1-406  
+! (NASA Langley Research Center; H. E Jones, Technical Officer) 
+!
+! 2/1/01 - 1/31/06  NASA Ames Training Grant No. NGT-2-52275 
+! (NASA Ames Research Center; Y. H. Yung, Technical Officer) 
+!
+! 5/15/2003 - 5/14/2004  NASA LaRC Purchase Order L-71744D 
+! (NASA Langley Research Center; C. L. Burley, Technical Officer) 
+!
+! 3/1/2003 - 2/28/2006 NASA Langley Grant NAG-03025 
+! (NASA Langley Research Center, D. P. Lockard, Technical Officer)
+!
+! 1/1/2013 - 1/30/2015 - Bell Purchase Order 132098
+! (Bell Helicopter Textron, Inc. Fort Wort, TX; Timothy Sammuels Tecnical Contact)
+!
+!
+! Written by Guillaume Bres, Guillaume Perez, Leonard Lopes, Hsuan-Nien Chen,
+! Christopher Hennes and Rui Cheng. Faculty advisor Dr. Kenneth S. Brentner.
