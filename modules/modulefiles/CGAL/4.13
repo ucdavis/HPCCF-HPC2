@@ -1,0 +1,24 @@
+#%Module1.0#####################################################################
+
+set name "CGAL"
+set dir "CGAL"
+set version "4.13"
+set os "ucdhpc-20.04"
+set note "CGAL is a software project that provides easy access to efficient and reliable geometric algorithms in the form of a C++ library. https://www.cgal.org/"
+
+
+set swroot "/software"
+module-whatis "This module loads $name version $version for $os. $note"
+
+prepend-path PATH $swroot/$dir/$version/$os/bin
+prepend-path PATH $swroot/$dir/$version/$os/sbin
+
+setenv CGAL_HOME $swroot/$dir/$version/$os
+
+prepend-path LD_LIBRARY_PATH $env(CGAL_HOME)/lib
+prepend-path CPATH $env(CGAL_HOME)/include
+
+if { [ module-info mode load ] } {
+    puts stderr "Module $dir-$version-$os loaded.\n      $note"
+}
+
