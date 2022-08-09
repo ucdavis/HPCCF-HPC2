@@ -5,7 +5,6 @@ set dir "conda3"
 set version "4.13.0"
 set os "ucdhpc-20.04"
 
-
 set url "https://docs.conda.io/en/latest/miniconda.html"
 set tags "programming language"
 
@@ -13,12 +12,36 @@ set note "Miniconda is a free minimal installer for conda. It is a small, bootst
 
 module-whatis "This module loads $name version $version. $note"
 
+if { [info exists env(CONDA_EXE)] } {
+    puts stderr "ERROR: CONDA_EXE is already defined: $env(CONDA_EXE)."
+    puts stderr "This module will almost certainly interfere with your conda installation."
+    puts stderr "Remove existing conda installation and its shell hooks from your PATH before proceeding."
+    exit
+}
+
 set swroot "/software"
 prepend-path PATH            $swroot/$dir/$version/bin
+prepend-path PATH            $swroot/$dir/$version/condabin
 prepend-path MANPATH         $swroot/$dir/$version/share/man
 
 # https://setuptools.pypa.io/en/latest/deprecated/distutils-legacy.html
 setenv SETUPTOOLS_USE_DISTUTILS stdlib
+setenv CONDA_MOD_ROOT $swroot/$dir/$version/
+
+switch -- [module-info shell] {
+    bash {
+        source-sh bash $env(CONDA_MOD_ROOT)/shell-setup.bash
+    }
+    sh {
+        source-sh bash $env(CONDA_MOD_ROOT)/shell-setup.bash
+    }
+    zsh {
+        source-sh zsh $env(CONDA_MOD_ROOT)/shell-setup.zsh
+    }
+    csh {
+        source-sh tcsh $env(CONDA_MOD_ROOT)/shell-setup.tcsh
+    }
+}
 
 if { [ module-info mode load ] } {
     puts stderr "Module $dir/$version loaded."
