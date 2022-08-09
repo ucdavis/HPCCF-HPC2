@@ -1,0 +1,25 @@
+#%Module1.0
+## Memsurfer
+## 2022-08-09
+
+
+set name "MemSurfer"
+set dir "MemSurfer"
+set os "ucdhpc-20.04"
+set note "Memsurfer -MemSurfer is an efficient and versatile tool to compute and analyze membrane surfaces found in a wide variety of large-scale molecular simulations.  \n    https://github.com/LLNL/MemSurfer"
+set version "1.1"
+set conda_version "4.13.0"
+
+module-whatis "This module loads $name version $version for $os. $note"
+
+module load conda3/$conda_version
+module load SWIG/4.0.2
+module load CGAL/4.13
+
+if [module-info mode load] {
+        puts stderr "Module [module-info name] loaded."
+        puts stderr "This module primes a conda environment. To access the software, run:"
+        puts stderr "    conda activate MemSurfer-$version"
+        puts stderr "When you are finishined, run:"
+        puts stderr "    conda deactivate"
+}
