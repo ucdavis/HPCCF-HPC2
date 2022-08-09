@@ -1,0 +1,21 @@
+#%Module1.0#####################################################################
+
+set name "SWIG"
+set dir "SWIG"
+set version "4.0.2"
+set os "ucdhpc-20.04"
+set note "SWIG is a software development tool that connects programs \
+          written in C and C++ with a variety of high-level programming \
+          languages. For details, see https://www.swig.org/."
+
+
+set swroot "/software"
+
+prepend-path PATH		$swroot/$dir/$version/$os/bin
+#prepend-path MANPATH		$swroot/$dir/$version/$os/share/man
+
+module-whatis "This module loads $name version $version for $os. $note"
+
+if { [ module-info mode load ] } {
+    puts stderr "Module $dir-$version-$os loaded.\n     $note"
+}
