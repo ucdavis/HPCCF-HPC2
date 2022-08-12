@@ -1,0 +1,21 @@
+#%Module1.0
+## matlab
+## by Camille Scott
+## Installer source from CoE: https://software.engr.ucdavis.edu/
+## contact coeithelp@ucdavis.edu for further information.
+
+set name "Matlab"
+set dir "Matlab"
+set os "ucdhpc-20.04"
+set note "Matlab Simulation Package.\n     http://www.mathworks.com"
+set version "2022a"
+
+module-whatis "This module loads $name version $version for $os. $note"
+
+setenv MATLAB_HOME /software/$dir/$version/$os
+
+prepend-path PATH $env(MATLAB_HOME)/bin
+
+if [module-info mode load] {
+	puts stderr "Module [module-info name] loaded "
+}
