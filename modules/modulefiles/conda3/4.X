@@ -51,5 +51,20 @@ switch -- [module-info shell] {
 }
 
 if { [ module-info mode load ] } {
-    puts stderr "Module $dir/$version loaded."
+    puts stderr "Module $dir/$version loaded.\n"
+    puts stderr "This module initializes a base conda install in your current shell environment."
+    puts stderr "It takes care of `conda init`, and as such, will interfere with locally-installed "
+    puts stderr "conda; if you have a local install, it should have warned you and failed to load."
+    puts stderr "\nTo view available environments, including your local environments and those "
+    puts stderr "installed system-wide, use: "
+    puts stderr "\n    conda env list"
+    puts stderr "\nTo activate an environment, use: "
+    puts stderr "\n    conda activate \[ENVIRONMENT_NAME\]"
+    puts stderr "\nTo create your own environment, you can use either the `conda` or `mamba` command."
+    puts stderr "`mamba` functions exactly the same as `conda`, and uses the same channels, while "
+    puts stderr "solving and creating environments much more efficiently. For example, you could create "
+    puts stderr "an environment containing python v3.10, pandas, and ipython with: "
+    puts stderr "\n    mamba create -n my-pandas-env python=3.10 pandas ipython"
+    puts stderr "\nand activate it with `conda activate my-pandas-env`."
+    puts stderr "\nFor more information, see https://conda.io/projects/conda/en/latest/user-guide/getting-started.html#managing-environments."
 }
