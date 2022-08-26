@@ -12,10 +12,17 @@ set note "Miniconda is a free minimal installer for conda. It is a small, bootst
 
 module-whatis "This module loads $name version $version. $note"
 
-if { [info exists env(CONDA_EXE)] } {
-    puts stderr "ERROR: CONDA_EXE is already defined: $env(CONDA_EXE)."
+if { [info exists env(CONDA_EXE)] && [module-info command load] } {
+    puts stderr "ERROR: CONDA_EXE is currently defined: $env(CONDA_EXE)."
     puts stderr "This module will almost certainly interfere with your conda installation."
     puts stderr "Remove existing conda installation and its shell hooks from your PATH before proceeding."
+    exit
+}
+
+if { [info exists env(CONDA_PREFIX)] && [module-info command unload] } {
+    puts stderr "ERROR: CONDA_PREFIX is currently defined: $env(CONDA_PREFIX)."
+    puts stderr "This means you have a conda environment active."
+    puts stderr "Make sure to `conda deactivate` before you unload this module."
     exit
 }
 
