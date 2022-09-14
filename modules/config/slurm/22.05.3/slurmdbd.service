@@ -1,0 +1,15 @@
+[Unit]
+Description=Slurm DBD accounting daemon
+After=network.target munge.service
+ConditionPathExists=/software/slurm/20.11.0/ucdhpc-20.04/etc/slurmdbd.conf
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/sysconfig/slurmdbd
+ExecStart=/software/slurm/20.11.0/ucdhpc-20.04/sbin/slurmdbd -D $SLURMDBD_OPTIONS
+ExecReload=/bin/kill -HUP $MAINPID
+LimitNOFILE=65536
+
+
+[Install]
+WantedBy=multi-user.target
