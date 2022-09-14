@@ -23,11 +23,7 @@ setenv OPENMPI_ROOT $swroot/$dir/$version/$os
 setenv MPI_ROOT $swroot/$dir/$version/$os
 prepend-path LD_LIBRARY_PATH $swroot/$dir/$version/$os/lib
 prepend-path CPATH $swroot/$dir/$version/$os/include
-prepend-path MANPATH $swroot/$dir/$version/$os/man
-
-# this seems to be breaking manpages. -MCL
-#prepend-path MANPATH   ":$swroot/$dir/$version/$os/share/man"
-#prepend-path PYTHONPATH $swroot/$dir/$version/$os/lib/python3.5/site-packages/
+prepend-path MANPATH $swroot/$dir/$version/$os/share/man
 
 if { [ module-info mode load ] } {
     puts stderr "Module $dir-$version-$os loaded.\n     $note"
