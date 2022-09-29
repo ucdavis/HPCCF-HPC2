@@ -1,9 +1,9 @@
 # generated with conda shell.csh hook
 
-setenv CONDA_EXE "/share/software/conda3/4.13.0/bin/conda"
-setenv _CONDA_ROOT "/share/software/conda3/4.13.0"
-setenv _CONDA_EXE "/share/software/conda3/4.13.0/bin/conda"
-setenv CONDA_PYTHON_EXE "/share/software/conda3/4.13.0/bin/python"
+setenv CONDA_EXE "${CONDA_MOD_ROOT}/bin/conda"
+setenv _CONDA_ROOT "${CONDA_MOD_ROOT}"
+setenv _CONDA_EXE "${CONDA_MOD_ROOT}/bin/conda"
+setenv CONDA_PYTHON_EXE "${CONDA_MOD_ROOT}/bin/python"
 echo "Copyright (C) 2012 Anaconda, Inc" > /dev/null
 echo "SPDX-License-Identifier: BSD-3-Clause" > /dev/null
 
