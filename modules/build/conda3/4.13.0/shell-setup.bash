@@ -1,9 +1,9 @@
 # generated with conda shell.bash hook
 
-export CONDA_EXE='/share/software/conda3/4.13.0/bin/conda'
+export CONDA_EXE='${CONDA_MOD_ROOT}/bin/conda'
 export _CE_M=''
 export _CE_CONDA=''
-export CONDA_PYTHON_EXE='/share/software/conda3/4.13.0/bin/python'
+export CONDA_PYTHON_EXE='${CONDA_MOD_ROOT}/bin/python'
 
 # Copyright (C) 2012 Anaconda, Inc
 # SPDX-License-Identifier: BSD-3-Clause
